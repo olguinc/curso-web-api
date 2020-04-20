@@ -7,7 +7,7 @@ import ar.com.educacionit.app.ws.soap.impl.ProductoWSServiceImpl;
 public class ProductoWSSoapMain {
 
 	public static void main(String[] args) {
-		
+
 		System.out.println("Publishing WS Soap in 8000 port");
 
 		Endpoint.publish("http://localhost:8000/", new ProductoWSServiceImpl());
