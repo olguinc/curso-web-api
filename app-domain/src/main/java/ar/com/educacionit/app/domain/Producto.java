@@ -1,5 +1,7 @@
 package ar.com.educacionit.app.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "producto")
-public class Producto {
+public class Producto implements Serializable {
+
+	private static final long serialVersionUID = 6526954406923328062L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,12 +38,6 @@ public class Producto {
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.codigo = codigo;
-	}
-
-	@Override
-	public String toString() {
-		return "Producto [id=" + id + ", descripcion=" + descripcion + ", precio=" + precio + ", codigo=" + codigo
-				+ "]";
 	}
 
 	public Long getId() {
@@ -73,4 +71,11 @@ public class Producto {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", descripcion=" + descripcion + ", precio=" + precio + ", codigo=" + codigo
+				+ "]";
+	}
+
 }
