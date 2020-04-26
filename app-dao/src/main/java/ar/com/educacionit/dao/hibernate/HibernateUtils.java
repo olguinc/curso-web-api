@@ -1,4 +1,4 @@
-package ar.com.educacionit.web.servlets;
+package ar.com.educacionit.dao.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -11,23 +11,22 @@ public class HibernateUtils {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 
 	private HibernateUtils() {
-
 	}
 
 	// Hibernate 5:
 	private static SessionFactory buildSessionFactory() {
 		try {
 			// Create the ServiceRegistry from hibernate.cfg.xml
-			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()//
 					.configure("hibernate.cfg.xml").build();
 
-			// Create a metadata sources using the specified service registry
+			// Create a metadata sources using the specified service registry.
 			Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
 
 			return metadata.getSessionFactoryBuilder().build();
-			
 		} catch (Throwable ex) {
-			System.out.println("Initial SessionFactory creation failed. " + ex);
+
+			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
@@ -40,4 +39,5 @@ public class HibernateUtils {
 		// Close caches and connection pools
 		getSessionFactory().close();
 	}
+
 }
